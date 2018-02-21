@@ -4,7 +4,7 @@
   "description": "App for freelancers of all industries - track your customers, your projects, and your entire workflow",
   "main": "index.js",
   "scripts": {
-    "react-dev": "",
+    "react-dev": "webpack -d --watch",
     "server-dev": "nodemon --inspect server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
