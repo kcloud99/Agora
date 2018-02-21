@@ -2,12 +2,23 @@
 <html>
 <head>
   <title>Agora App</title>
+  <script src="http://code.jquery.com/jquery-3.3.1.js"></script>
 </head>
 <body>
-  This is the body.
 
 
-  This is even more of the body.
+Project List<br><br><br>
 
+
+<br><br><br>
+Enter a name for a new project.<br><input type="text" id="newProjectName">
+<button id="newProjectButton"> Add Project </button>
+
+
+<script>
+  $("#newProjectButton").on("click", function() {
+    console.log($("#newProjectName").val());
+  })
+</script>
 </body>
 </html>

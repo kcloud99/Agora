@@ -1,14 +1,12 @@
 # Agora
-App for freelancers of all industries - track your customers, your projects, and your entire workflow
-# Project Name
 
-> Pithy project description
+App for freelancers of all industries - track your customers, your projects, and your entire workflow
 
 ## Team
 
-  - __Product Owner__: teamMember
-  - __Scrum Master__: teamMember
-  - __Development Team Members__: teamMember, teamMember
+  - __Product Owner__: Glenn Holt
+  - __Scrum Master__: Kyle McLeod
+  - __Development Team Members__: Brandon Little, Habib Qureshi
 
 ## Table of Contents
 
@@ -22,15 +20,17 @@ App for freelancers of all industries - track your customers, your projects, and
 
 ## Usage
 
-> Some usage instructions
+> Simply log in or create an account.  Once logged in, create a new project from the panel on the left, or view your existing projects.  Once a project has been created, you can further customize details about the project, such as details about the timeline, billables, finances, and the customer.
 
 ## Requirements
 
-- Node 0.10.x
-- Redis 2.6.x
-- Postgresql 9.1.x
-- etc
-- etc
+-NodeJS
+-React
+-React DOM
+-Webpack
+-Babel-core, Babel-loader, Babel-preset-es2015, Babel-preset-react
+-Mongodb
+-Mongoose
 
 ## Development
 
@@ -38,11 +38,9 @@ App for freelancers of all industries - track your customers, your projects, and
 
 From within the root directory:
 
-```sh
-sudo npm install -g bower
+
 npm install
-bower install
-```
+
 
 ### Roadmap
 
