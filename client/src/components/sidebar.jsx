@@ -18,7 +18,8 @@ class Sidebar extends React.Component {
       backgroundColor: "#FFF",
       WebkitFilter: "drop-shadow(3px 0px 3px #666)",
       filter: "drop-shadow(3px 0px 3px #666)"
-    }
+    };
+
     return (
       <div style={sideStyle}>
         <ul>
