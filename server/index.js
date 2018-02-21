@@ -1,5 +1,8 @@
 var express = require("express"); // using express for routing
+
 var app = express(); // initializing app variable for routing
+
+
 var bodyParser = require("body-parser"); // can parse incoming requests and possibly stringify outgoing responses
 app.use(bodyParser.json()); // setting for body parser
 app.use(bodyParser.urlencoded({ extended: false })); // another setting for body parser
