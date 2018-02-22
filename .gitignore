@@ -3,4 +3,5 @@ node_modules/
 bower_components/
 *.log
 
-dist/bundle.js
+client/dist/bundle.js
+package-lock.json
