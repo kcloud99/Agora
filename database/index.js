@@ -62,9 +62,9 @@ db.once('open', function() {
 //     console.log('Book successfully saved.');
 //   });
 // }
-module.exports.save = save;
+//module.exports.save = save;
 
-module.exports.selectAll = selectAll;
+//module.exports.selectAll = selectAll;
 
 // UNCOMMENT TO TEST SELECTALL
 // module.exports.selectAll(function(err, data){
