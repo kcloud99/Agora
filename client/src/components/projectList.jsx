@@ -1,38 +1,42 @@
 import React from 'react';
+import ProjectListEntry from './projectListEntry.jsx'
 
-class projectList extends React.Component{
+class ProjectList extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
-      nameVal: '';
+      nameVal: ''
     }
   }
 
-  addProject(name) => {
+  addProject(name) {
     console.log(name);
     this.setState({nameVal: name});
   }
 
   render() {
 
-    var listStyle = {
-      height: 60%,
-      width: 80%,
-      border: solid 1px "gray",
-      backgroundColor: "#FFFFFF",
-    };
+    // var listStyle = {
+    //   height: 60,
+    //   width: 80,
+    //   borderStyle: solid,
+    //   borderColor: 'black',
+    //   backgroundColor: "#FFFFFF",
+    // };
 
     return (
-      <div style={listStyle}>
       <div>
-        <input type="text" id="newProjectName">
-        <button id="newProjectButton" onClick={() => this.addProject(document.getElementById("newProjectName").value)}> Add Project </button>
-      </div>
-        {props.projects.map(function(project) {
-          return <ProjectListEntry project="project"/>
-        })}
+        <div>
+          <input type="text" id="newProjectName"></input>
+          <button id="newProjectButton" onClick={() => this.addProject(document.getElementById("newProjectName").value)}> Add Project </button>
+        </div>
+          {this.props.projects.map(function(project) {
+            return <ProjectListEntry project={project} key={project.name}/>
+          })}
       </div>
     )
   }
 
 }
+
+export default ProjectList;
