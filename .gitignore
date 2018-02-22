@@ -4,4 +4,3 @@ bower_components/
 *.log
 
 client/dist/bundle.js
-package-lock.json
