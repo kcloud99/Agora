@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import $ from 'jquery';
 import Sidebar from './components/sidebar.jsx';
 import ProjectList from './components/projectList.jsx';
+import Navbar from './components/navbar.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -11,12 +11,18 @@ class App extends React.Component {
     this.state = {
       projects: [
       {
-        name: 'Bill',
-        description: 'Fix car'
       }
       ]
     }
   }
+  displayInfo() {
+    if (currentInfo === a) {
+
+    }
+    return <ProjectList/>
+    return <CustomerInfo/>
+  }
+
 
   componentDidMount() {
     fetch('/projects')
@@ -26,12 +32,16 @@ class App extends React.Component {
 
   render () {
     return (
-      <div>
-        <div id="navbar">
-          <h1>AGORA</h1>
+      <div className="container-fluid">
+        <div>
+          <Navbar />
         </div>
-        <Sidebar />
-        <ProjectList projects={this.state.projects}/>
+        <div className="row">
+          <Sidebar />
+          <div>
+            <ProjectList projects={this.state.projects}/>
+          </div>
+        </div>
       </div>
     )
   }

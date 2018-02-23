@@ -7,18 +7,20 @@ class ProjectListEntry extends React.Component {
 
   render() {
 
-    // var listEntryStyle = {
-    //   borderStyle: solid,
-    //   borderColor: "#DDDDDD"
-    // };
-
     return (
       <div>
-      <h5>
-        {this.props.project.name}
+        <h5>
+          {this.props.project.name}
         </h5>
+        <h6>Description:
+        </h6>
         <p>
           {this.props.project.description}
+        </p>
+        <h6>Customer:
+        </h6>
+        <p>
+          {this.props.project.customer}
         </p>
       </div>
     )

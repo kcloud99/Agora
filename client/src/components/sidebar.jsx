@@ -11,25 +11,20 @@ class Sidebar extends React.Component {
   render () {
 
     // var sideStyle = {
-    //   height: 60,
-    //   width: 15,
-    //   padding: 20,
-    //   borderStyle: solid,
-    //   borderColor: "black",
     //   backgroundColor: "#FFF",
     //   WebkitFilter: "drop-shadow(3px 0px 3px #666)",
     //   filter: "drop-shadow(3px 0px 3px #666)"
     // };
 
     return (
-      <div>
-        <ul>
-          <li>All Projects</li>
-          <li>Project Workspace</li>
-          <li>Overall Timeline</li>
-          <li>Finance History</li>
-          <li>All Resources</li>
-          <li>Customer List</li>
+      <div id="sidebar" className="col-sm-3">
+        <ul className="list-group">
+          <li className="list-group-item">All Projects</li>
+          <li className="list-group-item">Project Workspace</li>
+          <li className="list-group-item">Overall Timeline</li>
+          <li className="list-group-item">Finance History</li>
+          <li className="list-group-item">All Resources</li>
+          <li className="list-group-item">Customer List</li>
         </ul>
       </div>
     )
