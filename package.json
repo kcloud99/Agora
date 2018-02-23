@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "App for freelancers of all industries - track your customers, your projects, and your entire workflow",
   "main": "index.js",
+  "engines": {
+    "node": "8.9.1"
+  },
   "scripts": {
     "react-dev": "webpack -d --watch",
     "server-dev": "nodemon --inspect server/index.js",
