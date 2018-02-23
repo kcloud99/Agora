@@ -1,18 +1,10 @@
 import React from 'react';
 import ProjectListEntry from './projectListEntry.jsx'
-
+//*** CHANGE TO STATELESS FUNCTION COMPONENT
 class ProjectList extends React.Component{
-  constructor(props) {
-    super(props);
-    this.state = {
-      nameVal: ''
-    }
-  }
 
-  addProject(name) {
-    console.log(name);
-    this.setState({nameVal: name});
-  }
+
+
 
   render() {
 
@@ -22,19 +14,6 @@ class ProjectList extends React.Component{
           {this.props.projects.map(function(project, index) {
             return <ProjectListEntry project={project} key={index}/>
           })}
-          <div>
-          <form method="post" className="form-horizontal">
-            <fieldset>
-              <legend>New Project Name:</legend>
-                <input type="text" id="newProjectName"></input>
-              <legend>Customer:</legend>
-                <input type="text" id="customerName"></input>
-              <legend>Project Description:</legend>
-                <input type="text" id="projectDescription"></input>
-            </fieldset>
-            <button id="newProjectButton" onClick={() => this.addProject(document.getElementById("newProjectName").value)}> Add Project </button>
-          </form>
-        </div>
       </div>
     )
   }
