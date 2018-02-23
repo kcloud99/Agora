@@ -4,3 +4,4 @@ bower_components/
 *.log
 
 client/dist/bundle.js
+.DS_Store
