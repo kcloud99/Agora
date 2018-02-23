@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Sidebar from './components/sidebar.jsx';
 import ProjectList from './components/projectList.jsx';
 import Navbar from './components/navbar.jsx';
+import AddProject from './components/addProject.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -39,6 +40,7 @@ class App extends React.Component {
         <div className="row">
           <Sidebar />
           <div>
+            <AddProject />
             <ProjectList projects={this.state.projects}/>
           </div>
         </div>
