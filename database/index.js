@@ -33,12 +33,17 @@ var createProject = function(obj){
 };
 
 var selectAll = function() {
-  console.log(Projects.find());
   return Projects.find();
 };
 
+var selectAllCustomers = function() {
+  console.log("selectAllCustomers function");
+  return Projects.find().select("customer");
+}
+
 module.exports.selectAll = selectAll;
 module.exports.createProject = createProject;
+module.exports.selectAllCustomers = selectAllCustomers;
 // module.exports.selectAll(function(err, data){
 //   console.log(err);
 //   console.log(data);

@@ -23,6 +23,12 @@ app.get("/projects", function(req, res) { // fetching projects from database
   //                        ^ this argument should be the return value of the .find function, which should be an array of all of the table row objects
 })
 
+app.get("/customers", function(req, res) {
+  console.log("Heard request for all customers.");
+  db.selectAllCustomers().then(function(customers) {res.send(customers)});
+
+  // .then((customers) => res.send(customers));
+})
 
 app.post("/projects", function(req, res) { // adding a new project to the database
   // console.log("Heard post from app.======>>>>>>", Object.keys(req.body)[0]);
