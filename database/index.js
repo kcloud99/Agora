@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/Greenfield');
+var uriString = process.env.MONGODB_URI || 'mongodb://localhost/Greenfield';
+mongoose.connect(uriString);
 var Schema = mongoose.Schema;
 var db = mongoose.connection;
 

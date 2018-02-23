@@ -64,9 +64,9 @@ app.put("/projects", function(req, res) { // updating an existing project in the
 
 
 
+var port = process.env.PORT || 8080;
 
-
-app.listen(8080, function() { // creates server - this function runs once upon server creation/restart
+app.listen(port, function() { // creates server - this function runs once upon server creation/restart
   console.log("Server created, listening on port 8080"); // listening on localhost:8080
 })
 
