@@ -25,7 +25,6 @@ app.get("/projects", function(req, res) { // fetching projects from database
 
 
 app.post("/projects", function(req, res) { // adding a new project to the database
-
   // console.log("Heard post from app.======>>>>>>", Object.keys(req.body)[0]);
   // for(var key in req.body){
   //   console.log('key IS>>>>>',key);
@@ -33,13 +32,19 @@ app.post("/projects", function(req, res) { // adding a new project to the databa
   //   var theData = key;
   //   break;
   // }
+  req.on('data', function(chunk) {
+    var body = chunk.toString();
+    console.log('chunk data is: ', body);
+    db.createProject(JSON.parse(body));
+    res.send(200);
+  });
   // console.log('THE DATA >>>>',theData);
   // db.createProject(theData);
   // res.send("Post response.");
-  console.log("Heard post from app.");   /// hello how goes it?
-  // console.log("test",req.body);
-  db.createProject(req.body);
-  res.send(200);
+  // console.log("Heard post from app.", req.body);   /// hello how goes it?
+  // // console.log("test",req.body);
+  // db.createProject(req.body);
+  // res.send(200);
 
   //there should be a function, assuming called save, which takes a single object and saves it into the database via mongoose connection, possibly adding a timestamp field to the row, but the rest of the object schema in the database should match the object key:value pairs in the req.body object
   // db.save(req.body) <= should take the object, map it into a new Collection(obj) (meaning a new document/row in the collection/table) and then .save() the new variable

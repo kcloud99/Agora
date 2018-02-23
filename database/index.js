@@ -4,8 +4,8 @@ mongoose.connect(uriString);
 var Schema = mongoose.Schema;
 var db = mongoose.connection;
 
-db.on('error', function() {
-  console.log('mongoose connection error');
+db.on('error', function(err) {
+  console.log('mongoose connection error', err);
 });
 
 db.once('open', function() {
@@ -30,9 +30,10 @@ var createProject = function(obj){
         if (err) throw err;
         return 'project successfully saved.';
     });
-}
+};
 
-var selectAll = function(callback) {
+var selectAll = function() {
+  console.log(Projects.find());
   return Projects.find();
 };
 

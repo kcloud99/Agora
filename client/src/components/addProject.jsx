@@ -23,8 +23,12 @@ class AddProject extends React.Component{
   addProject(object) {
     console.log(name);
     fetch('/projects', {
-      method: POST,
-      body: JSON.stringify(object),
+      method: 'POST',
+      // headers: {
+      //    'Accept': 'application/json',
+      //    'Content-Type': 'application/json',
+      //  },
+      body: JSON.stringify(object)
     });
   }
 
