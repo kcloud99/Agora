@@ -39,7 +39,7 @@ var selectAll = function() {
 var selectAllCustomers = function() {
   console.log("selectAllCustomers function");
   return Projects.find().select("customer");
-}
+};
 
 module.exports.selectAll = selectAll;
 module.exports.createProject = createProject;

@@ -26,9 +26,7 @@ app.get("/projects", function(req, res) { // fetching projects from database
 app.get("/customers", function(req, res) {
   console.log("Heard request for all customers.");
   db.selectAllCustomers().then(function(customers) {res.send(customers)});
-
-  // .then((customers) => res.send(customers));
-})
+});
 
 app.post("/projects", function(req, res) { // adding a new project to the database
   // console.log("Heard post from app.======>>>>>>", Object.keys(req.body)[0]);
