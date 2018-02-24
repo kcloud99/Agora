@@ -43,7 +43,7 @@ class App extends React.Component {
         <div className="row" style={mainDivStyles}>
           <Sidebar />
           <div className="col-sm-9">
-            <AddProject />
+            <AddProject action={this.componentDidMount.bind(this)}/>
             <ProjectList projects={this.state.projects}/>
           </div>
         </div>

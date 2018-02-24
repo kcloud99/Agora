@@ -1,3 +1,6 @@
+var GLENNSHERE = true;  // this is entered by Glenn Holt to see if we can fix the chunking problem
+                        // We should not have to do what we are doing, except something wacko is happening
+                        // down below !!!!!
 var express = require("express"); // using express for routing
 var db = require('../database/index.js');
 var app = express(); // initializing app variable for routing
@@ -36,12 +39,26 @@ app.post("/projects", function(req, res) { // adding a new project to the databa
   //   var theData = key;
   //   break;
   // }
-  req.on('data', function(chunk) {
-    var body = chunk.toString();
-    console.log('chunk data is: ', body);
-    db.createProject(JSON.parse(body));
-    res.send(200);
-  });
+
+  if(GLENNSHERE){
+    db.createProject(req.body);  // not sure if we will still need to parse the body, probably NOT
+    res.send(JSON.stringify({abc:"hello "}));
+  }else{
+    req.on('data', function(chunk) {
+      var body = chunk.toString();
+      console.log('chunk data is: ', body);
+     db.createProject(JSON.parse(body));
+     res.send(200);
+    });
+  }
+
+
+
+
+
+
+
+
   // console.log('THE DATA >>>>',theData);
   // db.createProject(theData);
   // res.send("Post response.");
@@ -87,8 +104,3 @@ app.listen(port, function() { // creates server - this function runs once upon s
 // }, function (error, response, body){
 //     console.log("Posted hard-coded request.");
 // });
-
-
-
-
-
