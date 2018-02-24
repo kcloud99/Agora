@@ -9,68 +9,68 @@ class AddProject extends React.Component{
       name: '',
       customer: '',
       description: '',
-      // timeline: {
-      //   startDate: '',
-      //   endDate: 'tomorrow',
-      //   status: 'new',
-      // }
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    // this.handleDateChange = this.handleDateChange.bind(this);
   }
 
   addProject(object) {
     console.log(name);
     fetch('/projects', {
       method: 'POST',
-      // headers: {
-      //    'Accept': 'application/json',
-      //    'Content-Type': 'application/json',
-      //  },
       body: JSON.stringify(object)
-    });
+    })
   }
 
   handleChange (e) {
     var target = e.target;
     var name = target.name;
     var value = target.value;
-
     this.setState({
       [name]: value
     });
-    console.log(this.state);
   }
 
   handleSubmit(event) {
     console.log(this.state);
     event.preventDefault();
     this.addProject(this.state);
+    this.clearFormVals();
   }
 
-  // handleDateChange(e) {
-  //   this.setState({
-  //     timeline: {
-  //       startDate: e.target.value,
-  //     }
-  //   });
-  //   console.log(this.state.timeline);
-  // }
+  clearFormVals() {
+    this.setState({
+      name: '',
+      customer: '',
+      description: '',
+    });
+  }
+
 
   render() {
+    const buttonStyle = {
+      float: 'right'
+    };
     return (
       <div>
-        <form method="post" className="form-horizontal" onSubmit={this.handleSubmit}>
+        <form method="post" className="form-horizontal">
           <fieldset>
-            <legend>New Project Name:</legend>
-              <input type="text" id="newProjectName" name="name" value={this.state.nameVal} onChange={this.handleChange}></input>
-            <legend>Customer:</legend>
-              <input type="text" id="customerName" name="customer" value={this.state.customerVal} onChange={this.handleChange}></input>
-            <legend>Project Description:</legend>
-              <input type="text" id="projectDescription" name="description" value={this.state.projectDescVal} onChange={this.handleChange}></input>
+            <div className="form-group">
+              <legend>New Project Name:</legend>
+                <input className="form-control" type="text" id="newProjectName" name="name" value={this.state.name} onChange={this.handleChange}></input>
+            </div>
+            <div className="form-group">
+              <legend>Customer:</legend>
+                <input className="form-control" type="text" id="customerName" name="customer" value={this.state.customer} onChange={this.handleChange}></input>
+            </div>
+            <div className="form-group">
+              <legend>Project Description:</legend>
+                <input className="form-control" type="text" id="projectDescription" name="description" value={this.state.description} onChange={this.handleChange}></input>
+            </div>
           </fieldset>
-          <button id="newProjectButton" type="submit"> Add Project </button>
+          <div className="form-group">
+            <button id="newProjectButton" style={buttonStyle} type="submit" onClick={this.handleSubmit} className="btn btn-primary"> Add Project </button>
+          </div>
         </form>
       </div>
     )

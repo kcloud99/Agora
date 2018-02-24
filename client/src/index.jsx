@@ -32,14 +32,17 @@ class App extends React.Component {
   }
 
   render () {
+    const mainDivStyles = {
+      padding: '50px'
+    }
     return (
       <div className="container-fluid">
         <div>
           <Navbar />
         </div>
-        <div className="row">
+        <div className="row" style={mainDivStyles}>
           <Sidebar />
-          <div>
+          <div className="col-sm-9">
             <AddProject />
             <ProjectList projects={this.state.projects}/>
           </div>
