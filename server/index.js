@@ -55,12 +55,3 @@ var port = process.env.PORT || 8080;
 app.listen(port, function() { // creates server - this function runs once upon server creation/restart
   console.log("Server created, listening on port 8080"); // listening on localhost:8080
 })
-
-// request({
-//     url: "http://localhost:8080/projects",
-//     method: "POST",
-//     json: true,
-//     body: {"name": "Fix a shed", "description": "Fix a shed at the client's house.", "customer": "customer name", "resources": "poreclain", "finances": "450", "timeline": "should finish by next week"}
-// }, function (error, response, body){
-//     console.log("Posted hard-coded request.");
-// });
