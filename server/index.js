@@ -1,6 +1,3 @@
-var GLENNSHERE = true;  // this is entered by Glenn Holt to see if we can fix the chunking problem
-                        // We should not have to do what we are doing, except something wacko is happening
-                        // down below !!!!!
 var express = require("express"); // using express for routing
 var db = require('../database/index.js');
 var app = express(); // initializing app variable for routing
@@ -32,45 +29,8 @@ app.get("/customers", function(req, res) {
 });
 
 app.post("/projects", function(req, res) { // adding a new project to the database
-  // console.log("Heard post from app.======>>>>>>", Object.keys(req.body)[0]);
-  // for(var key in req.body){
-  //   console.log('key IS>>>>>',key);
-  //   console.log('the body of key',req.body[key]);
-  //   var theData = key;
-  //   break;
-  // }
-
-  if(GLENNSHERE){
     db.createProject(req.body);  // not sure if we will still need to parse the body, probably NOT
-    res.send(JSON.stringify({abc:"hello "}));
-  }else{
-    req.on('data', function(chunk) {
-      var body = chunk.toString();
-      console.log('chunk data is: ', body);
-     db.createProject(JSON.parse(body));
-     res.send(200);
-    });
-  }
-
-
-
-
-
-
-
-
-  // console.log('THE DATA >>>>',theData);
-  // db.createProject(theData);
-  // res.send("Post response.");
-  // console.log("Heard post from app.", req.body);   /// hello how goes it?
-  // // console.log("test",req.body);
-  // db.createProject(req.body);
-  // res.send(200);
-
-  //there should be a function, assuming called save, which takes a single object and saves it into the database via mongoose connection, possibly adding a timestamp field to the row, but the rest of the object schema in the database should match the object key:value pairs in the req.body object
-  // db.save(req.body) <= should take the object, map it into a new Collection(obj) (meaning a new document/row in the collection/table) and then .save() the new variable
-  //db function needs no return value
-  //this function itself needs no response
+    res.send(req.body);
 })
 
 

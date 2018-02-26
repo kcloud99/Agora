@@ -1,4 +1,3 @@
-var GLENNISHERE = true;
 import React from 'react';
 
 //** TODO : REFACTOR FOR HIDDEN STYLING
@@ -19,7 +18,7 @@ class AddProject extends React.Component{
 
   addProject(object) {
     console.log(name);
-    if(GLENNISHERE){
+
           var url = '/projects';
           var data = object;
          fetch(url, {
@@ -30,14 +29,7 @@ class AddProject extends React.Component{
         })
       }).then(res => res.json())
       .catch(error => console.error('Error:', error))
-      .then(response => this.action());
-    }else{
-      fetch('/projects', {
-        method: 'POST',
-        body: JSON.stringify(object)
-      })
-    }
-
+      .then(this.action());
   }
 
   handleChange (e) {
