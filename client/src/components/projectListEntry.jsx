@@ -12,15 +12,15 @@ class ProjectListEntry extends React.Component {
         <h5>
           {this.props.project.name}
         </h5>
-        <h6>Description:
-        </h6>
-        <p>
-          {this.props.project.description}
-        </p>
         <h6>Customer:
         </h6>
         <p>
           {this.props.project.customer}
+        </p>
+        <h6>Description:
+        </h6>
+        <p>
+          {this.props.project.description}
         </p>
       </div>
     )
