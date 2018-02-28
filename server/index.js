@@ -8,8 +8,6 @@ app.use(session({
   cookie: {
     maxAge: 60000
   }
-  resave: false,
-  saveUninitialized: true
 }));
 
 var bodyParser = require("body-parser"); // can parse incoming requests and possibly stringify outgoing responses
