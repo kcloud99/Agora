@@ -36,15 +36,66 @@ var selectAll = function() {
   return Projects.find();
 };
 
+var updateProject = function(obj) {
+  Projects.findByIdAndUpdate(obj._id, obj);
+}
+
 var selectAllCustomers = function() {
   console.log("selectAllCustomers function");
   return Projects.find().select("customer");
 };
 
+var userSchema = mongoose.Schema({
+  username: String,
+  password: String,
+  projects: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Projects'
+  }],
+});
+
+var Users = mongoose.model('Users', userSchema);
+
+var createUser = function(obj) {
+  var newObj = {
+    username: obj.username,
+    password: obj.password
+  };
+
+  var newUser = new Users(newObj);
+  newUser.save();
+}
+
+var validateUser = function(obj) { // returns boolean
+  Users.findOne({"username": obj.username}, function(err, user) {
+    if (err) {return err;}
+
+    return user.password === obj.password;
+  })
+}
+
 module.exports.selectAll = selectAll;
 module.exports.createProject = createProject;
 module.exports.selectAllCustomers = selectAllCustomers;
+module.exports.updateProject = updateProject;
+module.exports.createUser = createUser;
+module.exports.validateUser = validateUser;
 // module.exports.selectAll(function(err, data){
 //   console.log(err);
 //   console.log(data);
 // });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
