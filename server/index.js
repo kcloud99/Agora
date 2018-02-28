@@ -60,7 +60,7 @@ app.post("/signup", function(req, res) { // signing up, creating new user in dat
 
 app.post("/login", function(req, res) { // logging in, needs to validate user with data from object in request body
   //should take username, see if there's a match, and then see if the passwords match
-  console.log("Login attempt").
+  console.log("Login attempt.");
   console.log(req.body);
   if (db.validateUser(req.body)) { // if user is validated, then officially create session
     req.session.regenerate(function() {
