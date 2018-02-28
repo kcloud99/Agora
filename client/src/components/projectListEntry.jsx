@@ -6,21 +6,29 @@ class ProjectListEntry extends React.Component {
   }
 
   render() {
-
+    const projectStyle = {
+      border: "1px solid #60b0f4",
+      margin: "10px",
+      borderRadius: "10px",
+      textAlign: "left"
+    };
+    const headingStyle = {
+      textAlign: "right"
+    };
     return (
-      <div>
-        <h5>
-          {this.props.project.name}
-        </h5>
-        <h6>Customer:
-        </h6>
+      <div className="col-md-5" style={projectStyle}>
+        <div className="row">
+          <h4 className="col-xs-6">
+            NAME: {this.props.project.name}
+          </h4>
+          <h4 style={headingStyle} className="col-xs-6">
+            CUSTOMER: {this.props.project.customer}
+          </h4>
+        </div>
+        <h4>Description:
+        </h4>
         <p>
           {this.props.project.customer}
-        </p>
-        <h6>Description:
-        </h6>
-        <p>
-          {this.props.project.description}
         </p>
       </div>
     )

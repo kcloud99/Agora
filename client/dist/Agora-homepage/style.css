@@ -1,0 +1,33 @@
+.main {
+  width: auto;
+  height:1000px;
+  background-image: url('wood.jpg');
+}
+nav form {
+  margin: 8px;
+}
+.heading {
+  color: white;
+}
+.articles {
+  margin-top: 40px;
+  text-align: center;
+}
+.column-class img {
+  width: 250px;
+  height: 200px;
+}
+.column-class h5 {
+  font-size: 1.5em;
+}
+.column-class p {
+  padding: 0px 15px 0px 15px;
+  text-align: justify;
+  font-size: 1.3em;
+}
+.bottom {
+  background-color: #BDC5BE;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  margin-top: 30px;
+}
