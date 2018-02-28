@@ -83,8 +83,8 @@ class App extends React.Component {
 
 }
 
-ReactDOM.render((
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
-  ), document.getElementById('app'));
+// ReactDOM.render((
+//   <BrowserRouter>
+//     <App />
+//   </BrowserRouter>
+//   ), document.getElementById('app'));
