@@ -20,7 +20,6 @@ var db = require("../database/index.js"); // assuming we want the database file 
 
 app.get("/projects", function(req, res) { // fetching projects from database
   console.log("Heard get from app.");
-
   db.selectAll(req.session.user).then( (results) => res.send(results));
 })
 
