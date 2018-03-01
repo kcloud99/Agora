@@ -23,17 +23,27 @@ var projectSchema = mongoose.Schema({
 
 var Projects = mongoose.model('Projects', projectSchema);
 
-var createProject = function(obj){
+var createProject = function(obj, username){
 
     var newProject = new Projects(obj);
+    Users.findOne({username: username}, function(err, user) {
+      user.projects.push(newProject.id || newProject._id);
+      user.save();
+    })
     newProject.save(function(err) {
         if (err) throw err;
         return 'project successfully saved.';
     });
 };
 
-var selectAll = function() {
-  return Projects.find();
+var selectAll = function(username) { // finds all projects via project ids in user table
+  var arr = [];
+  Users.findOne({username: username}, function(err, user) {
+    user.projects.forEach(project => Projects.findById(project, function (err, doc) {
+      arr.push(doc);
+    }))
+  })
+  return arr;
 };
 
 var updateProject = function(obj) {
@@ -45,13 +55,19 @@ var selectAllCustomers = function() {
   return Projects.find().select("customer");
 };
 
+// var userSchema = mongoose.Schema({
+//   username: String,
+//   password: String,
+//   projects: [{
+//         type: Schema.Types.ObjectId,
+//         ref: 'Projects'
+//   }],
+// });
+
 var userSchema = mongoose.Schema({
   username: String,
   password: String,
-  projects: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Projects'
-  }],
+  projects: []
 });
 
 var Users = mongoose.model('Users', userSchema);
@@ -59,7 +75,8 @@ var Users = mongoose.model('Users', userSchema);
 var createUser = function(obj) {
   var newObj = {
     username: obj.username,
-    password: obj.password
+    password: obj.password,
+    projects: []
   };
 
   var newUser = new Users(newObj);

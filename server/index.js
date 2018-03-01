@@ -24,7 +24,7 @@ app.get("/projects", function(req, res) { // fetching projects from database
   // console.log("Sending hard-coded object, not from actual mongodb database.");
   // res.send(premadeProjects.dummyData); // sending dummy data from static file, not from database
 
-  db.selectAll().then( (results) => res.send(results));
+  db.selectAll(req.session.user).then( (results) => res.send(results));
   //function, assuming called find, should have tableName.find() somewhere in the body, which returns all of the rows of the table, meaning an array of objects
   //db.find().then(function(rows) res.send(rows));
   //                        ^ this argument should be the return value of the .find function, which should be an array of all of the table row objects
@@ -36,7 +36,7 @@ app.get("/customers", function(req, res) { // fetching customers from database, 
 });
 
 app.post("/projects", function(req, res) { // adding a new project to the database
-    db.createProject(req.body);  // not sure if we will still need to parse the body, probably NOT
+    db.createProject(req.body, req.session.user);  // not sure if we will still need to parse the body, probably NOT
     res.send(req.body);
 })
 
