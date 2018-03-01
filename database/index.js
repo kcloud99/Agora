@@ -101,19 +101,3 @@ module.exports.validateUser = validateUser;
 //   console.log(err);
 //   console.log(data);
 // });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
