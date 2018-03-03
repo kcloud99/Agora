@@ -21,29 +21,22 @@ var db = require("../database/index.js"); // assuming we want the database file 
 app.get("/projects", function(req, res) { // fetching projects from database
   console.log("Heard get from app.");
 
-  // console.log("Sending hard-coded object, not from actual mongodb database.");
-  // res.send(premadeProjects.dummyData); // sending dummy data from static file, not from database
-
   db.selectAll(req.session.user).then( (results) => res.send(results));
-  //function, assuming called find, should have tableName.find() somewhere in the body, which returns all of the rows of the table, meaning an array of objects
-  //db.find().then(function(rows) res.send(rows));
-  //                        ^ this argument should be the return value of the .find function, which should be an array of all of the table row objects
 })
 
-app.get("/customers", function(req, res) { // fetching customers from database, now in the users schema
+app.get("/customers", function(req, res) { // fetching customers from database
   console.log("Heard request for all customers.");
   db.selectAllCustomers().then(function(customers) {res.send(customers)});
 });
 
 app.post("/projects", function(req, res) { // adding a new project to the database
-    db.createProject(req.body, req.session.user);  // not sure if we will still need to parse the body, probably NOT
+    db.createProject(req.body, req.session.user);
     res.send(req.body);
 })
 
 app.put("/projects", function(req, res) { // updating an existing project in the database
   console.log("Heard put from app.");
   db.updateProject(req.body);
-
 })
 
   //the function in the database file should use tableName.findByIdAndUpdate(id, obj, optional callback)
@@ -55,7 +48,6 @@ app.post("/signup", function(req, res) { // signing up, creating new user in dat
   console.log("Signup attempt.");
   console.log(req.body);
   db.createUser(req.body); // assuming req.body.username is username and req.body.password is password
-
 })
 
 app.post("/login", function(req, res) { // logging in, needs to validate user with data from object in request body

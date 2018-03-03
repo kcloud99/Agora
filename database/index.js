@@ -23,7 +23,7 @@ var projectSchema = mongoose.Schema({
 
 var Projects = mongoose.model('Projects', projectSchema);
 
-var createProject = function(obj, username){
+var createProject = function(obj, username){ // adds a new project to projects table and project id to logged-in user in users table
 
     var newProject = new Projects(obj);
     Users.findOne({username: username}, function(err, user) {
