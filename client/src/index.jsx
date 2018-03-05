@@ -33,12 +33,12 @@ class App extends React.Component {
     this.setState({currentProject: project});
   }
 
-  componentDidMount() {
-    fetch('/projects')
-    .then((projects) => projects.json())
-    .then((projects) => this.setState({projects}))
-    .then((projects) => this.setState({currentProject: this.state.projects[0]}));
-  }
+  // componentDidMount() {
+  //   fetch('/projects')
+  //   .then((projects) => projects.json())
+  //   .then((projects) => this.setState({projects}))
+  //   .then((projects) => this.setState({currentProject: this.state.projects[0]}));
+  // }
 
   render () {
     const mainDivStyles = {

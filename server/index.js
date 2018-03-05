@@ -6,7 +6,7 @@ var session = require('express-session');
 app.use(session({
   secret: 'Secret token',
   cookie: {
-    maxAge: 60000
+    maxAge: 6000000
   }
 }));
 
@@ -16,21 +16,24 @@ app.use(bodyParser.urlencoded({ extended: false })); // another setting for body
 app.use(express.static(__dirname + '/../client/dist')); // location of static files, such as index.html
 // var premadeProjects = require("../dummyData.js")
 
-var db = require("../database/index.js"); // assuming we want the database file to be called 'db'
-
 app.get("/projects", function(req, res) { // fetching projects from database
   console.log("Heard get from app.");
-  db.selectAll(req.session.user).then( (results) => res.send(results));
+  console.log("in /projects get route ");
+  console.log(req.session.user);
+  db.selectAll(req.session.user).then(function(results) {res.send(results)});
 })
 
 app.get("/customers", function(req, res) { // fetching customers from database
   console.log("Heard request for all customers.");
+  console.log(req.session.user);
   db.selectAllCustomers().then(function(customers) {res.send(customers)});
 });
 
 app.post("/projects", function(req, res) { // adding a new project to the database
+  console.log("in projects post route");
+  console.log(req.session.user);
     db.createProject(req.body, req.session.user);
-    res.send(req.body);
+    res.send(JSON.stringify(req.body) + " will be added to the database.");
 })
 
 app.put("/projects", function(req, res) { // updating an existing project in the database
@@ -45,6 +48,7 @@ app.put("/projects", function(req, res) { // updating an existing project in the
 
 app.post("/signup", function(req, res) { // signing up, creating new user in database with object from request body
   console.log("Signup attempt.");
+  console.log("in signup post route ");
   console.log(req.body);
   db.createUser(req.body); // assuming req.body.username is username and req.body.password is password
 })
@@ -52,15 +56,22 @@ app.post("/signup", function(req, res) { // signing up, creating new user in dat
 app.post("/login", function(req, res) { // logging in, needs to validate user with data from object in request body
   //should take username, see if there's a match, and then see if the passwords match
   console.log("Login attempt.");
+  console.log("in login post route ");
   console.log(req.body);
-  if (db.validateUser(req.body)) { // if user is validated, then officially create session
-    req.session.regenerate(function() {
-      req.session.user = req.body.username;
-      res.send("Logged in as " + req.body.username);
-    })
-  } else {
-    res.send("Invalid credentials.");
-  }
+  db.validateUser(req.body)
+                          .then (function(status) {
+                              console.log(status);
+                              if (status) { // if user is validated, then officially create session
+                                req.session.regenerate(function(err) {
+                                  if (err) console.log("ERROR: " + JSON.stringify(err));
+                                  req.session.user = req.body.username;
+                                  res.send("Logged in as " + req.body.username);
+                                });
+                              } else {
+                                res.send("Invalid credentials.");
+                                // console.log(db.validateUser(req.body));
+                              }
+                          })
 })
 
 app.get("/logout", function(req, res) { // signing out, should destroy session
