@@ -3,6 +3,10 @@ import Login from './login.jsx';
 import Signup from './signup.jsx';
 
 var Navbar = (props) => {
+  const logoutStyle={
+    float: 'right',
+    margin: '10px'
+  };
   return (
     <nav className="navbar navbar-default">
       <div className="container-fluid">
@@ -11,11 +15,9 @@ var Navbar = (props) => {
         </div>
         <ul className="nav navbar-nav">
           <li className="active"><a href="#">Home</a></li>
-          <li><a href="#">Login</a></li>
-          <li><a href="#">Signup</a></li>
-          <li><Login /></li>
-          <li><Signup /></li>
-      </ul>
+          <li><Login login={props.login} signup={props.signup} /></li>
+          <li style={logoutStyle}><button type="button" className="btn btn-secondary mb-2" onClick={props.logout}>Logout</button></li>
+        </ul>
       </div>
     </nav>
   );

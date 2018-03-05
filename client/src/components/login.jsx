@@ -1,26 +1,57 @@
 import React from 'react';
 
-const Login = (props) => {
-  const formStyle = {
-    float: 'right',
-    margin: '5px'
-  };
-  const inputStyle={
-    margin: '5px'
-  };
-  return (
-    <form className="form-inline" style={formStyle}>
-      <div className="form-group mb-2" style={inputStyle}>
-        <label className="sr-only">Username</label>
-        <input type="email" className="form-control" placeholder="Username" />
-      </div>
-      <div className="form-group mx-sm-3 mb-2" style={inputStyle}>
-        <label className="sr-only">Password</label>
-        <input type="password" className="form-control" placeholder="Password" />
-      </div>
-      <button type="submit" className="btn btn-primary mb-2" style={inputStyle}>Login</button>
-    </form>
-  );
+class Login extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: '',
+      password: ''
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
+    this.handleSignup = this.handleSignup.bind(this);
+  }
+
+  handleChange(e) {
+    let name = e.target.name;
+    let value = e.target.value;
+    this.setState({
+      [name]: value
+    });
+  }
+
+  handleLogin(e) {
+    e.preventDefault();
+    this.props.login(this.state);
+  }
+  handleSignup(e) {
+    e.preventDefault();
+    this.props.signup(this.state);
+  }
+
+  render() {
+    const formStyle = {
+      float: 'right',
+      margin: '5px'
+    };
+    const inputStyle={
+      margin: '5px'
+    };
+    return (
+      <form className="form-inline" style={formStyle}>
+        <div className="form-group mb-2" style={inputStyle}>
+          <label className="sr-only">Username</label>
+          <input type="email" className="form-control" placeholder="Username" name="username" value={this.state.username} onChange={this.handleChange} />
+        </div>
+        <div className="form-group mx-sm-3 mb-2" style={inputStyle}>
+          <label className="sr-only">Password</label>
+          <input type="password" className="form-control" placeholder="Password" name="password" value={this.state.password} onChange={this.handleChange} />
+        </div>
+        <button type="button" className="btn btn-primary mb-2" style={inputStyle} onClick={this.handleLogin}>LOGIN!</button><span>OR</span>
+        <button type="button" className="btn btn-primary mb-2" style={inputStyle} onClick={this.handleSignup}>SIGNUP!</button>
+      </form>
+    );
+  }
 };
 
 export default Login;

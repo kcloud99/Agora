@@ -12,19 +12,19 @@ class AddProject extends React.Component{
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxprops.action:',props.action);
+    // console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxprops.action:',props.action);
     this.action = props.action;
   }
 
   addProject(object) {
     console.log(name);
 
-          var url = '/projects';
-          var data = object;
-         fetch(url, {
-          method: 'POST', // or 'PUT'
-          body: JSON.stringify(data),
-          headers: new Headers({
+      var url = '/projects';
+      var data = object;
+      fetch(url, {
+        method: 'POST', // or 'PUT'
+        body: JSON.stringify(data),
+        headers: new Headers({
           'Content-Type': 'application/json'
         })
       }).then(res => res.json())

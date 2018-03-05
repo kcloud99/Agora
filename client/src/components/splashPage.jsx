@@ -23,10 +23,12 @@ class SplashPage extends React.Component {
   render() {
     return (
       <div>
-        <Navbar username={this.state.username} password={this.state.password} onLogin={this.handleLogin} onSignup={this.handleSignup} />
+        This is the splash page!
       </div>
     );
   }
 }
+
+// <Navbar username={this.state.username} password={this.state.password} onLogin={this.handleLogin} onSignup={this.handleSignup} />
 
 export default SplashPage;

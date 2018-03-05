@@ -5,6 +5,13 @@ class ProjectListEntry extends React.Component {
     super(props);
   }
 
+  // chooseProject(project) {
+  //   // Set clicked project to current project in state
+  //   // pass info to current project in index.jsx
+  //   // this.props.setProject(project);
+  //   console.log('set project as: ', project);
+  // }
+
   render() {
     const projectStyle = {
       border: "1px solid #60b0f4",
@@ -18,7 +25,7 @@ class ProjectListEntry extends React.Component {
     return (
       <div className="col-md-5" style={projectStyle}>
         <div className="row">
-          <h4 className="col-xs-6">
+          <h4 className="col-xs-6" onClick={ () => props.current(props.project) }>
             NAME: {this.props.project.name}
           </h4>
           <h4 style={headingStyle} className="col-xs-6">
