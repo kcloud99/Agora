@@ -47,7 +47,6 @@ class Signup extends React.Component {
       </form>
     );
   }
->>>>>>> Added login/signup/logout routes to client
 };
 
 export default Signup;

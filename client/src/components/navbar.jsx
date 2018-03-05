@@ -11,7 +11,7 @@ var Navbar = (props) => {
     <nav className="navbar navbar-default">
       <div className="container-fluid">
         <div className="navbar-header">
-          <a className="navbar-brand" href="#">Agora</a>
+          <a className="navbar-brand" href="/home">Agora</a>
         </div>
         <ul className="nav navbar-nav">
           <li className="active"><a href="#">Home</a></li>

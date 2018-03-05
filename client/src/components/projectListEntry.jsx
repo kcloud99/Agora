@@ -25,7 +25,7 @@ class ProjectListEntry extends React.Component {
     return (
       <div className="col-md-5" style={projectStyle}>
         <div className="row">
-          <h4 className="col-xs-6" onClick={ () => props.current(props.project) }>
+          <h4 className="col-xs-6" onClick={ () => this.props.current(this.props.project) }>
             NAME: {this.props.project.name}
           </h4>
           <h4 style={headingStyle} className="col-xs-6">

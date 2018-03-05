@@ -12,21 +12,21 @@ db.once('open', function() {
   console.log('mongoose connected successfully');
 });
 
-// var projectSchema = mongoose.Schema({
-//     name: String,
-//     description: String,
-//     customer: String,
-//     resources: [{name:String, value:String}],
-//     finances: [{name:String, value:String}],
-//     timeline: {tasks:[{name:String,dueDate:Date}],start:Date, end:Date, status: String}
-//   });
-
 var projectSchema = mongoose.Schema({
-    _id: Schema.Types.ObjectId,
     name: String,
     description: String,
-    customer: String
+    customer: String,
+    resources: [{name:String, value:String}],
+    finances: [{name:String, value:String}],
+    timeline: {tasks:[{name:String,dueDate:Date}],start:Date, end:Date, status: String}
   });
+
+// var projectSchema = mongoose.Schema({
+//     _id: Schema.Types.ObjectId,
+//     name: String,
+//     description: String,
+//     customer: String
+//   });
 
 var Projects = mongoose.model('Projects', projectSchema);
 
@@ -44,8 +44,10 @@ var createProject = function(obj, username){ // adds a new project to projects t
     console.log("Project saved.");
     console.log(newProject._id);
     var newID = newProject._id;
+    console.log('username in db: ', username);
     Users.findOne({username: username}, function(err, user) {
-      user.projects = user.projects.concat(newProject._id || "hardcoded for now");
+      console.log('user in db: ', user)
+      user.projects = user.projects.concat(newProject._id);
       user.save();
     })
   });
@@ -83,7 +85,7 @@ var selectAll = function(username) {
   return Users.findOne({username: username}).populate("projects").exec(function (err, projects) {
     if (err) {return err}
 
-    console.log(projects);
+    console.log('Projects: ', projects);
   })
 }
 

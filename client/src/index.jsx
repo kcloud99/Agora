@@ -18,29 +18,31 @@ class App extends React.Component {
     this.state = {
       projects: [],
       currentProject: {},
-      isAuthenticated: false
-    }
+      isAuthenticated: false,
+      username: ''
+    };
   }
 
   setCurrentProject(project) {
     this.setState({currentProject: project})
-    .then(<Link to="/workspace" />);
+    //.then(<Link to="/workspace" />);
   }
 
   componentDidMount() {
-    // Check session -- set isAuthenticated to proper state
-    fetch('/')
-    .then(res => res.json())
-    .then(res => this.setState({isAuthenticated: res}))
-    .then(function() {
-      if(this.state.isAuthenticated) {
-        getProjects();
-      }
-    });
+    console.log('Component mounting');
+    this.getProjects();
   }
 
   getProjects() {
-    fetch('/projects')
+    let username = this.state.username;
+    console.log(username);
+    fetch('/projects', {
+      method: 'POST',
+      body: JSON.stringify({username: username}),
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      })
+    })
     .then((projects) => projects.json())
     .then((projects) => this.setState({projects}))
     .then((projects) => this.setState({currentProject: this.state.projects[0]}));
@@ -51,34 +53,38 @@ class App extends React.Component {
     // creds will be username/password from state of login component
     fetch('/login', {
       method: 'POST',
-      body: JSON.Stringify(creds),
+      body: JSON.stringify(creds),
       headers: new Headers({
         'Content-Type': 'application/json'
       })
     })
     .catch(error => console.error('Error: ', error))
-    .then(response => response.json())
-    .then(response => this.setState({isAuthenticated: response}))
-    .then(this.getProjects());
+    .then(this.setState({username: creds.username}))
+    //.then(response => response.json())
+    //.then(response => this.setState({isAuthenticated: response}))
+    .then(() => this.getProjects());
     console.log('Login: ', creds);
   }
 
   handleSignup(creds) {
     fetch('/signup', {
       method: 'POST',
-      body: JSON.Stringify(creds),
+      body: JSON.stringify(creds),
       headers: new Headers({
         'Content-Type': 'application/json'
       })
     })
     .catch(error => console.error('Error: ', error))
-    .then(response => this.setState({isAuthenticated: response}));
+    .then(this.setState({username: creds.username}))
+    //.then(res => res.json())
+    //.then(this.setState({isAuthenticated: true}));
     console.log('Signup: ', creds);
   }
 
   handleLogout() {
     fetch('/logout')
     .then(console.log('Logged out successfully'))
+    .then(this.setState({username: ''}))
     .catch(error => console.error('Error loggin out: ', error));
   }
 
@@ -99,7 +105,7 @@ class App extends React.Component {
               <ProjectList {...props} projects={this.state.projects} current={this.setCurrentProject.bind(this)}/>
             )}/>
           <Route path="/addProject" render={(props) => (
-              <AddProject {...props} action={this.getProjects.bind(this)}/>
+              <AddProject {...props} action={this.getProjects.bind(this)} username={this.state.username}/>
             )}/>
           <Route path="/allProjects" render={(props) => (
               <ProjectList {...props} projects={this.state.projects} current={this.setCurrentProject.bind(this)}/>

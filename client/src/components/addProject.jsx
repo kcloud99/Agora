@@ -19,15 +19,16 @@ class AddProject extends React.Component{
   addProject(object) {
     console.log(name);
 
-      var url = '/projects';
+      var url = '/project';
       var data = object;
+      var username = this.props.username;
       fetch(url, {
         method: 'POST', // or 'PUT'
-        body: JSON.stringify(data),
+        body: JSON.stringify({data: data, username: username}),
         headers: new Headers({
           'Content-Type': 'application/json'
         })
-      }).then(res => res.json())
+      })//.then(res => res.json())
       .catch(error => console.error('Error:', error))
       .then(this.action());
   }
